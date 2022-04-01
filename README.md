@@ -3,8 +3,10 @@
 ## KGISL Institute Of Technology
 ## Smart attendance Application with blockchain technology 
 Front-end -> Flutter\
+Back-end -> Python\
 Api -> Fastapi\
-Database -> Postgresql
+Database -> Postgresql\
+Ai -> Tensorflow, Mediapipe, OpenCV
 
 ## workflow
 access -> extract frames -> recognition face -> recognition location -> store data.
