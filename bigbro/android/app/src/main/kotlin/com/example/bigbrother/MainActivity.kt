@@ -1,4 +1,4 @@
-package com.example.bigbro
+package com.example.bigbrother
 
 import io.flutter.embedding.android.FlutterActivity
 
