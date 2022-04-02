@@ -1,120 +1,54 @@
-import '../login/login_widget.dart';
-import '../signup/signup_widget.dart';
+import 'package:bigbrother/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
-class SplashScreenWidget extends StatefulWidget {
-  const SplashScreenWidget({Key key}) : super(key: key);
+class SplashWidget extends StatefulWidget {
+  const SplashWidget({Key key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _SplashScreenWidgetState createState() => _SplashScreenWidgetState();
+  _SplashWidgetState createState() => _SplashWidgetState();
 }
 
-class _SplashScreenWidgetState extends State<SplashScreenWidget> {
+class _SplashWidgetState extends State<SplashWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 10));
+      // ignore: use_build_context_synchronously
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SplashScreenWidget(),
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: const Color(0xFFF0F5FF),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: [
-              Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 300),
-                    child: Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF0F5FF),
-                        borderRadius: BorderRadius.circular(0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
-                        child: Image.asset(
-                          'assets/images/Cover.png',
-                          width: 20,
-                          height: 20,
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(-0.11, 0.68),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(100, 0, 100, 0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignupWidget(),
-                            ),
-                          );
-                        },
-                        text: 'Signup',
-                        options: FFButtonOptions(
-                          width: 200,
-                          height: 50,
-                          color: const Color(0xFF4D2DC2),
-                          textStyle:
-                              FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Open Sans',
-                                    color: Colors.white,
-                                  ),
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: 50,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(-0.05, 0.43),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(100, 0, 100, 0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginWidget(),
-                            ),
-                          );
-                        },
-                        text: 'Signin',
-                        options: FFButtonOptions(
-                          width: 200,
-                          height: 50,
-                          color: Colors.white,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .subtitle2
-                              .override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: 50,
-                        ),
-                        showLoadingIndicator: false,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+      backgroundColor: const Color(0xFF1E2429),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        constraints: const BoxConstraints(
+          maxWidth: double.infinity,
+          maxHeight: double.infinity,
+        ),
+        decoration: const BoxDecoration(
+          color: Color(0xFFF0F5FF),
+        ),
+        child: Image.asset(
+          'assets/images/BigBrother-logos_transparent.png',
+          width: 100,
+          height: 100,
+          fit: BoxFit.fitWidth,
         ),
       ),
     );
